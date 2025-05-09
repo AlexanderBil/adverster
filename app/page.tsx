@@ -1,9 +1,7 @@
 import CardList from './components/cardList/CardList';
 
 async function fetchUsers() {
-  const res = await fetch(
-    'https://jsonplaceholder.typicode.com/users',
-  );
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
   const result = await res.json();
   return result;
 }

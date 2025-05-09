@@ -9,8 +9,6 @@ const CardList = ({ users }: { users: User[] }) => {
   const [filter, setFilter] = useState('name');
 
   const filteredUsers = users.filter((user) => {
-    console.log(user);
-    
     switch (filter) {
       case 'name':
         return user.name.toLowerCase().includes(inputValue.toLowerCase());
@@ -28,16 +26,17 @@ const CardList = ({ users }: { users: User[] }) => {
         return user;
     }
   });
+  console.log('filteredUsers', filteredUsers);
 
   return (
-    <div className='m-5 tablet:w-fit mobile:w-full'>
+    <div className="m-5 tablet:w-fit mobile:w-full">
       <SearchBar
         setInputValue={setInputValue}
         setFilter={setFilter}
         filter={filter}
       />
       <div className="grid grid-cols-4 gap-5 items-center mobile:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4">
-        {filteredUsers.map((user) => (
+        {!filteredUsers.length ? <p className="text-amber-50">No Data...</p> : filteredUsers.map((user) => (
           <Card key={user.id} user={user} />
         ))}
       </div>
